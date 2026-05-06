@@ -1,8 +1,11 @@
 #pragma once
 
+#include <iostream>
 #include <stdexcept>
 
 using std::runtime_error;
+using std::cout;
+using std::endl;
 
 template <typename E>
 
@@ -49,16 +52,57 @@ public:
 
 	}
 
+	void setValue(int r, int c, E value) {
+
+		if (r < 0 and r >= rows) {
+
+			throw runtime_error("Invalid row");
+		}
+
+		if (c < 0 and c >= columns) {
+
+			throw runtime_error("Invalid column");
+		}
+
+		matrix[r][c] = value;
+	}
+
+	E getValue(int r, int c, E value) {
+
+		if (r < 0 and r >= rows) {
+
+			throw runtime_error("Invalid row");
+		}
+
+		if (c < 0 and c >= columns) {
+
+			throw runtime_error("Invalid column");
+		}
+
+		return matrix[r][c];
+
+	}
+
 	int getRows() {
 
+		return rows;
 	}
 
 	int getColumns() {
 
+		return columns;
 	}
 
 	void setAll(E value) {
 
+		for (int i = 0; i < rows; i++) {
+
+			for (int j = 0; j < columns; j++) {
+
+				matrix[i][j] = value;
+
+			}
+		}
 	}
 
 	void transpose() {
@@ -83,6 +127,15 @@ public:
 
 	void print() {
 
+		for (int i = 0; i < rows; i++) {
+
+			for (int j = 0; j < columns; j++) {
+
+				cout << matrix[i][j] << "\t";
+			}
+
+			cout << endl;
+		}
 	}
 };
 
