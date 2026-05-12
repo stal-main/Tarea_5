@@ -23,7 +23,7 @@ public:
 
 	Matrix(int rows, int columns) {
 
-		if (rows < 1 and columns < 1) {
+		if (rows < 1 || columns < 1) {
 
 			throw runtime_error("Invalid size");
 		}
@@ -54,12 +54,12 @@ public:
 
 	void setValue(int r, int c, E value) {
 
-		if (r < 0 and r >= rows) {
+		if (r < 0 || r >= rows) {
 
 			throw runtime_error("Invalid row");
 		}
 
-		if (c < 0 and c >= columns) {
+		if (c < 0 || c >= columns) {
 
 			throw runtime_error("Invalid column");
 		}
@@ -69,12 +69,12 @@ public:
 
 	E getValue(int r, int c, E value) {
 
-		if (r < 0 and r >= rows) {
+		if (r < 0 || r >= rows) {
 
 			throw runtime_error("Invalid row");
 		}
 
-		if (c < 0 and c >= columns) {
+		if (c < 0 || c >= columns) {
 
 			throw runtime_error("Invalid column");
 		}
@@ -107,22 +107,111 @@ public:
 
 	void transpose() {
 
+		E** newMatrix = new E * [columns];
+
+		for (int i = 0; i < columns; i++) {
+
+			newMatrix[i] = new E[rows];
+
+			for (int j = 0; j < rows; j++) {
+
+				newMatrix[i][j] = matrix[j][i];
+			}
+
+		}
+
+		for (int i = 0; 0 < rows; i++) {
+
+			delete[] matrix[i];
+		}
+
+		delete[] matrix;
+
+		matrix = newMatrix;
+		
+		int temp = rows;
+
+		rows = columns;
+
+		columns = temp;
+
 	}
 
 	void addRow(E value) {
 
+		E** newMatrix = new E * [rows + 1];
+
+		for (int i = 0; i < rows; i++) {
+
+			newMatrix[i] = matrix[i];
+		}
+
+		newMatrix[rows] = new E[columns];
+
+		for (int j; j < columns; j++) {
+
+			newMatrix[rows][j] = value;
+		}
+
+		delete[] matrix;
+
+		matrix = newMatrix;
+
+		rows++;
 	}
 
 	void addColumn(E value) {
+
+		transpose();
+
+		addRow(value);
+
+		transpose();
 
 	}
 
 	void removeRow(int row) {
 
+		if (row < 0 || row >= rows) {
+
+			throw runtime_error("Invalid row");
+		}
+
+		delete[] matrix[row];
+
+		E** newMatrix = new E * [rows - 1];
+
+		int k = 0;
+
+		for (int i = 0; i < rows; i++) {
+
+			if (i != row) {
+
+				newMatrix[k++] = matrix[i];
+			}
+		}
+
+		delete[] matrix;
+
+		matrix = newMatrix;
+
+		rows--;
 	}
 
-	void removeColumns(int columns) {
+	void removeColumn(int col) {
 
+		if (c < 0 || c >= columns) {
+
+			throw runtime_error("Invalid column");
+		}
+
+		tranpose();
+
+		removeRow(col);
+
+		transpose();
+
+		columns--;
 	}
 
 	void print() {
