@@ -148,7 +148,7 @@ public:
 
 		newMatrix[rows] = new E[columns];
 
-		for (int j; j < columns; j++) {
+		for (int j = 0; j < columns; j++) {
 
 			newMatrix[rows][j] = value;
 		}
