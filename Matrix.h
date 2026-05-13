@@ -200,12 +200,12 @@ public:
 
 	void removeColumn(int col) {
 
-		if (c < 0 || c >= columns) {
+		if (col < 0 || col >= columns) {
 
 			throw runtime_error("Invalid column");
 		}
 
-		tranpose();
+		transpose();
 
 		removeRow(col);
 
