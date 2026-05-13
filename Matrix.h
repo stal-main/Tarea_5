@@ -67,7 +67,7 @@ public:
 		matrix[r][c] = value;
 	}
 
-	E getValue(int r, int c, E value) {
+	E getValue(int r, int c) {
 
 		if (r < 0 || r >= rows) {
 
