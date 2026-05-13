@@ -120,7 +120,7 @@ public:
 
 		}
 
-		for (int i = 0; 0 < rows; i++) {
+		for (int i = 0; i < rows; i++) {
 
 			delete[] matrix[i];
 		}
@@ -210,8 +210,6 @@ public:
 		removeRow(col);
 
 		transpose();
-
-		columns--;
 	}
 
 	void print() {

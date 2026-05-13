@@ -1,6 +1,8 @@
 
 #include <iostream>
 #include <stdexcept>
+#include <cstdlib>
+#include <time.h>
 #include "Matrix.h"
 
 using std::cout;
@@ -114,7 +116,7 @@ int main() {
 
                 cin >> c;
 
-                cout << "Enter value";
+                cout << "Enter value: ";
 
                 cin >> val;
 
@@ -163,7 +165,7 @@ int main() {
 
                 m->addRow(val);
 
-                cout << "Row added";
+                cout << "Row added\n";
 
             }
 
@@ -177,7 +179,7 @@ int main() {
 
                 m->addColumn(val);
 
-                cout << "Column added";
+                cout << "Column added\n";
 
             }
 
@@ -191,7 +193,7 @@ int main() {
 
                 m->removeRow(r);
 
-                cout << "Row" << r << " removed\n";
+                cout << "Row " << r << " removed\n";
 
             }
 
@@ -199,13 +201,13 @@ int main() {
 
                 int c;
 
-                cout << "Enter column to remove; ";
+                cout << "Enter column to remove: ";
 
                 cin >> c;
 
                 m->removeColumn(c);
 
-                cout << "Column" << c << " removed\n";
+                cout << "Column " << c << " removed\n";
 
             }
 
